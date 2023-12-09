@@ -1,6 +1,8 @@
 import streamlit as st
 import base64
 import plotly.express as px
+import os
+
 
 def app():
     df = px.data.iris()
@@ -12,9 +14,11 @@ def app():
             data = f.read()
         return base64.b64encode(data).decode()
 
-
+    filenames = os.listdir('.')
+    print(filenames)
+    
     img = get_img_as_base64("./image.jpg")
-    img2 = get_img_as_base64("./image2.jpg")
+    # img2 = get_img_as_base64("./image2.jpg")
     img4 = get_img_as_base64("./image4.jpg")
 
 
