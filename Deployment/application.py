@@ -10,6 +10,7 @@ import prophet
 from prophet import Prophet
 from prophet.plot  import plot_plotly
 from plotly import graph_objs as go
+import numpy as np
 
 
 def app():
@@ -71,4 +72,38 @@ def app():
 	st.write("Forecast components")
 	fig2 = m.plot_components(forecast)
 	st.write(fig2)
+
+
+	st.write("Best stock calculation")
+	count = 0
+
+	maxx = 0
+	best = 'GOOG'
+
+	for i in ('GOOG', 'AAPL', 'MSFT', 'GME','TSLA', 'AMD'):
+    
+		# count = count + 1
+		# if(count==2):
+		# 	break
+
+		data1 = load_data(i)
+		df_train1 = data1[['Date','Close']]
+		df_train1 = df_train1.rename(columns={"Date": "ds", "Close": "y"})
+
+		m1 = Prophet()
+		m1.fit(df_train1)
+		future1 = m1.make_future_dataframe(periods=10)
+		forecast1 = m1.predict(future1)
+		arr = np.array(forecast1)
+		arr1 = arr[0:1]
+		lst = list(arr1)
+		st.write(i, lst[0][1])
+
+		if(lst[0][1] > maxx):
+			maxx = lst[0][1]
+			best = i
+
+	
+	st.write("Best stock is: ", i, " with price of: ", maxx)
+
 
