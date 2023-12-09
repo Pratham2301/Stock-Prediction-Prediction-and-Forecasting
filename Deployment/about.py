@@ -13,9 +13,9 @@ def app():
         return base64.b64encode(data).decode()
 
 
-    img = get_img_as_base64("image.jpg")
-    img2 = get_img_as_base64("image2.jpg")
-    img4 = get_img_as_base64("image4.jpg")
+    img = get_img_as_base64("./image.jpg")
+    img2 = get_img_as_base64("./image2.jpg")
+    img4 = get_img_as_base64("./image4.jpg")
 
 
     page_bg_img = f"""
