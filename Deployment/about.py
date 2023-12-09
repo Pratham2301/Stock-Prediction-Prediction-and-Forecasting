@@ -17,9 +17,9 @@ def app():
     filenames = os.listdir('.')
     print(filenames)
     
-    img = get_img_as_base64("./image.jpg")
+    img = get_img_as_base64("./Deployment/image.jpg")
     # img2 = get_img_as_base64("./image2.jpg")
-    img4 = get_img_as_base64("./image4.jpg")
+    img4 = get_img_as_base64("./Deployment/image4.jpg")
 
 
     page_bg_img = f"""
